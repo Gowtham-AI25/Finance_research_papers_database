@@ -1,5 +1,5 @@
-# Finance_research_papers_database
+### 🔍 Interactive ER Diagram (Zoomable)
 
-## ER diagram
+![ER Diagram Preview](docs/er_diagram_preview.png)
 
-[To view ER diagram in interactive mode use this Link](https://gowtham-ai25.github.io/Finance_research_papers_database/Finance_research_paper_11.drawio.html)
+[📄 Click here to view interactive ER diagram](https://gowtham-ai25.github.io/Finance_research_papers_database/Finance_research_paper_11.drawio.html)
