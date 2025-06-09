@@ -6,13 +6,13 @@ This project focuses on designing a robust and normalized Entity-Relationship (E
 
 📌 Goals and Objectives:
 
-To understand and represent the real-world entities and relationships within the OpenAlex schema (such as papers, authorships, institutions, concepts, etc.)
+- To understand and represent the real-world entities and relationships within the OpenAlex schema (such as papers, authorships, institutions, concepts, etc.)
 
-To apply advanced ER modeling techniques including strong/weak entities, associative entities, multi-valued attributes, and hierarchical relationships.
+- To apply advanced ER modeling techniques including strong/weak entities, associative entities, multi-valued attributes, and hierarchical relationships.
 
-To perform logical database design, ensuring referential integrity and eliminating redundancy through normalization up to Third Normal Form (3NF).
+- To perform logical database design, ensuring referential integrity and eliminating redundancy through normalization up to Third Normal Form (3NF).
 
-To build a scalable and query-efficient relational schema that can serve as a backend for research analytics or knowledge discovery systems.
+- To build a scalable and query-efficient relational schema that can serve as a backend for research analytics or knowledge discovery systems.
 
 
 ### 🔍 Interactive ER Diagram (Zoomable)
@@ -133,11 +133,11 @@ To build a scalable and query-efficient relational schema that can serve as a ba
 
 # 🧠 Outcomes and Learnings:
 
-Gained hands-on experience in real-world ER modeling using an open, non-relational scholarly dataset.
+- Gained hands-on experience in real-world ER modeling using an open, non-relational scholarly dataset.
 
-Transformed semi-structured JSON into a well-structured relational schema.
+- Transformed semi-structured JSON into a well-structured relational schema.
 
-Applied data modeling best practices, ensuring high data quality, integrity, and extensibility.
+- Applied data modeling best practices, ensuring high data quality, integrity, and extensibility.
 
-Prepared the foundation for advanced querying, analytics, and possible data warehousing.
+- Prepared the foundation for advanced querying, analytics, and possible data warehousing.
 
