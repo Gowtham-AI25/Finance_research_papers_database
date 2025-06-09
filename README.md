@@ -15,10 +15,9 @@ This project focuses on designing a robust and normalized Entity-Relationship (E
 - To build a scalable and query-efficient relational schema that can serve as a backend for research analytics or knowledge discovery systems.
 
 
-### 🔍 Interactive ER Diagram
+# 🔍 Interactive ER Diagram
 
 ![ER Diagram Preview](https://github.com/Gowtham-AI25/Finance_research_papers_database/blob/main/Finance_research_paper_image.jpg)
-
 
 [📄 Click here to view interactive ER diagram](https://gowtham-ai25.github.io/Finance_research_papers_database/Finance_research_paper_11.drawio.html)
 
