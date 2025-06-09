@@ -1,9 +1,11 @@
-#📘 Project Title: Designing a Normalized Relational Database for OpenAlex Scholarly Knowledge Graph
+# 📘 Project Title: Designing a Normalized Relational Database for OpenAlex Scholarly Knowledge Graph
 
-📄 Project Description:
+# 📄 Project Description:
+
 This project focuses on designing a robust and normalized Entity-Relationship (ER) model for the OpenAlex dataset—an open catalog of scholarly papers, authors, institutions, concepts, sources (journals/venues), and funders. OpenAlex provides a rich, interconnected knowledge graph of academic metadata. The main objective of this project is to transform this complex, JSON-based dataset into a clean, relational database schema optimized for querying, analysis, and integration with downstream research applications.
 
 📌 Goals and Objectives:
+
 To understand and represent the real-world entities and relationships within the OpenAlex schema (such as papers, authorships, institutions, concepts, etc.)
 
 To apply advanced ER modeling techniques including strong/weak entities, associative entities, multi-valued attributes, and hierarchical relationships.
@@ -129,7 +131,8 @@ To build a scalable and query-efficient relational schema that can serve as a ba
 ---
 
 
-🧠 Outcomes and Learnings:
+# 🧠 Outcomes and Learnings:
+
 Gained hands-on experience in real-world ER modeling using an open, non-relational scholarly dataset.
 
 Transformed semi-structured JSON into a well-structured relational schema.
