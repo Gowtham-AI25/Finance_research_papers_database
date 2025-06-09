@@ -1,0 +1,226 @@
+// Main paper metadata table
+Table meta_data {
+  paper_id varchar(20) [pk]
+  doi varchar(255) [unique, note: 'Digital Object Identifier']
+  title nvarchar(max) [not null]
+  abstract nvarchar(max)
+  language_code char(2)
+  linked_dataset varchar(255)
+}
+
+// Paper Index table (paper can have multiple indexes)
+Table paper_index {
+  paper_id varchar(20) [ref: > meta_data.paper_id]
+  index_name varchar(50)
+
+  indexes {
+    (paper_id, index_name) [pk]
+  }
+}
+
+// PMC table (one-to-one Relationship)
+Table pmc_table {
+  paper_id varchar(20) [pk, ref: - meta_data.paper_id]
+  pmc_id varchar(50)
+}
+
+// PubMed table (one-to-one Relationship)
+Table pubmed_table {
+  paper_id varchar(20) [pk, ref: - meta_data.paper_id]
+  pubmed_id varchar(50)
+}
+
+// Funder table (one paper can have multiple funders)
+Table Grants_data {
+  paper_id varchar(20) [ref: > meta_data.paper_id]
+  grant_funder_id varchar(50)
+
+  indexes {
+    (paper_id, grant_funder_id) [pk]
+  }
+}
+
+Table Funder_data {
+  grant_funder_id varchar(20) [pk, ref: < Grants_data.grant_funder_id]
+  grant_funder_name varchar(50)
+}
+
+// Publisher Table
+Table publisher {
+  paper_id varchar(20) [pk, not null, ref: - meta_data.paper_id]
+  primary_source_name varchar(150)
+  primary_source_is_core bool 
+  primary_source_host_org varchar(100)
+  is_published bool
+  publication_type varchar(40)
+  volume smallint
+  issue smallint
+  apc_usd decimal(10,2)
+  publication_date date
+  is_retracted bool
+  primary_source_is_oa bool
+  primary_license varchar(50)
+  paper_is_oa bool
+  locations_count smallint
+  best_oa_host_org varchar(100)
+  best_oa_license varchar(20)
+}
+
+Table citation {
+  paper_id varchar(20) [pk, ref: - meta_data.paper_id]
+  total_citations smallint 
+  fwci decimal(10,3)
+  citation_percentile float
+  is_top_1_percent_cited bool 
+  reference_count smallint
+}
+
+Table paper_references {
+  paper_id varchar(20) [ref: > citation.paper_id]
+  reference_ids varchar(20)
+
+  indexes {
+    (paper_id, reference_ids) [pk]
+  }
+}
+
+Table related_works {
+  paper_id varchar(20) [ref: > citation.paper_id]
+  related_paper_ids varchar(20)
+
+  indexes {
+    (paper_id, related_paper_ids) [pk]
+  }
+}
+
+Table openaccess {
+  paper_id varchar(20) [pk, not null, ref: - meta_data.paper_id]
+  is_oa_primary bool
+  is_oa_overall bool 
+  oa_status varchar(10)
+  oa_url varchar(255)
+  best_oa_pdf_url varchar(255)
+  primary_landing_page_url varchar(255)
+  best_oa_landing_page_url varchar(255)
+}
+
+Table locations {
+  paper_id varchar(20) [ref: > openaccess.paper_id]
+  location_pdf_urls varchar(255)
+  location_is_oa_list bool 
+  location_licenses varchar(40)
+  source_is_core_list bool
+  host_org_ids varchar(20)
+  host_org_names varchar(150)
+  location_landing_page_urls varchar(255)
+
+  indexes {
+    (paper_id, location_pdf_urls) [pk]
+  }
+}
+
+Table mainfilters {
+  paper_id varchar(20) [pk, ref: - meta_data.paper_id]
+  primary_topic_domain_name varchar(20)
+  primary_topic_field_name varchar(100)
+  primary_topic_subfield_name varchar(150)
+  primary_topic_name varchar(150)
+  primary_topic_score decimal(10,4)
+}
+
+Table domain {
+  paper_id varchar(20) [ref: > mainfilters.paper_id]
+  topic_domain_ids smallint [ref: > domain_name.domain_id]
+
+  indexes {
+    (paper_id, topic_domain_ids) [pk]
+  }
+}
+
+Table field {
+  paper_id varchar(20) [ref: > mainfilters.paper_id]
+  topic_field_ids smallint [ref: > field_name.field_id]
+
+  indexes {
+    (paper_id, topic_field_ids) [pk]
+  }
+}
+
+Table subfield {
+  paper_id varchar(20) [ref: > mainfilters.paper_id]
+  topic_subfield_ids smallint [ref: > subfield_name.subfield_id]
+
+  indexes {
+    (paper_id, topic_subfield_ids) [pk]
+  }
+}
+
+Table keywords {
+  paper_id varchar(20) [ref: > mainfilters.paper_id]
+  keyword_ids varchar(100)
+  keyword_scores float
+
+  indexes {
+    (paper_id, keyword_ids) [pk]
+  }
+}
+
+Table concepts {
+  paper_id varchar(20) [ref: > mainfilters.paper_id]
+  concept_ids varchar(20) [ref: > concept_name.concept_id]
+  concept_scores float
+
+  indexes {
+    (paper_id, concept_ids) [pk]
+  }
+}
+
+Table topics {
+  paper_id varchar(20) [ref: > mainfilters.paper_id]
+  topic_ids varchar(100) [ref: > topic_name.topic_id]
+  topic_scores float
+
+  indexes {
+    (paper_id, topic_ids) [pk]
+  }
+}
+
+Table domain_name {
+  domain_id smallint [pk, not null]
+  domain_name varchar(100)
+}
+
+Table field_name {
+  field_id smallint [pk, not null]
+  field_name varchar(150)
+}
+
+Table subfield_name {
+  subfield_id smallint [pk, not null]
+  subfield_name varchar(150)
+}
+
+Table topic_name {
+  topic_id varchar(20) [pk, not null]
+  topic_name varchar(150)
+}
+
+Table concept_name {
+  concept_id varchar(20) [pk, not null]
+  concept_name varchar(150)
+}
+
+Table paper_author {
+  paper_id varchar(20) [ref: > meta_data.paper_id]
+  author_id varchar(20)
+  author_role varchar(20)
+
+  indexes {
+    (paper_id, author_id) [pk]
+  }
+}
+
+Table author_data {
+  author_id varchar(20) [pk, ref: < paper_author.author_id]
+  author_name varchar(40)
+}
